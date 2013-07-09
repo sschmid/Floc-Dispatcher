@@ -1,5 +1,6 @@
 # Floc Dispatcher
 ![Floc Dispatcher Logo](http://sschmid.com/Dev/iOS/Libs/Floc-Dispatcher/Floc-Dispatcher-128.png)
+[![Build Status](https://travis-ci.org/sschmid/Floc-Dispatcher.png?branch=master)](https://travis-ci.org/sschmid/Floc-Dispatcher)
 
 ## Description
 Observe and dispatch any objects.
