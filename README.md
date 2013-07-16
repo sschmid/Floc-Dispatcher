@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/sschmid/Floc-Dispatcher.png?branch=master)](https://travis-ci.org/sschmid/Floc-Dispatcher)
 
 ## Description
-Observe and dispatch any objects.
+An alternative to NSNotificationCenter.
 
 ## Features
 * Dispatch any object (no NSNotification like in NSNotificationCenter)
@@ -60,6 +60,61 @@ You can add observers that get removed after execution
 - (void)doSthLast:(Greeting *)greeting {
     NSLog(@"Got greeting last: %@", greeting.string);
 }
+```
+
+## Example
+
+In this example a fake service simulates fetching some data from a remote server. It dispatches the response. An other class
+is observing objects of type `User`. If an `User` gets dispatched somewhere in the application, the observer gets
+notified and the target selector gets performed. `fl_dispatcher_add`, `fl_dispatcher_remove` and `fl_dispatcher_dispatch`
+are some convenience macros available in Floc Dispatcher.
+
+```objective-c
+@interface Example ()
+@property(nonatomic, strong) Service *service;
+@end
+
+@implementation Example
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        fl_dispatcher_add(self, [User class], @selector(updateWithUser:));
+
+        self.service = [[Service alloc] init];
+        [self.service login];
+    }
+
+    return self;
+}
+
+- (void)updateWithUser:(User *)user {
+    NSLog(@"user.name = %@", user.name);
+    NSLog(@"user.age = %u", user.age);
+}
+
+- (void)dealloc {
+    fl_dispatcher_remove(self);
+}
+
+@end
+```
+
+```objective-c
+@implementation Service
+
+- (void)login {
+    [self performSelector:@selector(remoteServerResponded) withObject:nil afterDelay:0.5];
+}
+
+- (void)remoteServerResponded {
+    User *user = [[User alloc] init];
+    user.name = @"Joe";
+    user.age = 28;
+    fl_dispatcher_dispatch(user);
+}
+
+@end
 ```
 
 ## Install Floc Dispatcher
