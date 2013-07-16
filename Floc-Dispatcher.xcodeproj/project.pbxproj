@@ -136,7 +136,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		8D4DFF20032E69211C3D42B1 /* Classes */ = {
+		8D4DFF20032E69211C3D42B1 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
 				8D4DF57AEDA01120FD686DE4 /* FlagObject.h */,
@@ -148,7 +148,7 @@
 				8D4DF4C0FE16D72E6655ABAD /* HasObserverObserver.h */,
 				8D4DF4B3381628009E39FA6B /* HasObserverObserver.m */,
 			);
-			path = Classes;
+			path = Fixtures;
 			sourceTree = "<group>";
 		};
 		CBFD7F3D17874523001BDF0B = {
@@ -210,7 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				CBFD7F6E17874523001BDF0B /* Supporting Files */,
-				8D4DFF20032E69211C3D42B1 /* Classes */,
+				8D4DFF20032E69211C3D42B1 /* Fixtures */,
 				8D4DF0BD140322C77F5D1357 /* FLDispatcherSpec.m */,
 			);
 			path = "Floc-DispatcherTests";
