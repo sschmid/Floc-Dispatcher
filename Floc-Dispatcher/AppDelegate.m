@@ -5,6 +5,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Example.h"
 
 @implementation AppDelegate
 
@@ -13,6 +14,8 @@
     self.window.backgroundColor = [UIColor blackColor];
 
     [self showIcon];
+
+    Example *example = [[Example alloc] init];
 
     [self.window makeKeyAndVisible];
     return YES;

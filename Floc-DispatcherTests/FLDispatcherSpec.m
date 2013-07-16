@@ -37,6 +37,17 @@ SPEC_BEGIN(FLDispatcherSpec)
 
         describe(@"FLDispatcher", ^{
 
+            it(@"has macros", ^{
+                id o = [[NSObject alloc] init];
+                SEL sel = @selector(init);
+                fl_dispatcher_dispatch(o);
+                fl_dispatcher_add(self, o, sel);
+                fl_dispatcher_addWithPrio(self, o, sel, 10);
+                fl_dispatcher_addOnce(self, o, sel);
+                fl_dispatcher_addOnceWithPrio(self, o, sel, 10);
+                fl_dispatcher_remove(self);
+            });
+
             __block FLDispatcher *dispatcher = nil;
             beforeEach(^{
                 dispatcher = [[FLDispatcher alloc] init];
