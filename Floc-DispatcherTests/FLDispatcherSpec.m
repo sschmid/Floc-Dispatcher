@@ -106,7 +106,7 @@ SPEC_BEGIN(FLDispatcherSpec)
 
                 it(@"raises exception, when observer does not respond to selector", ^{
                     [[theBlock(^{
-                        [dispatcher addObserver:observer forObject:object withSelector:@selector(unknownSelector) priority:0];
+                        [dispatcher addObserver:observer forObject:[object class] withSelector:@selector(unknownSelector) priority:0];
                     }) should] raiseWithName:@"FLObserverEntryException"];
                 });
 
