@@ -80,7 +80,7 @@ SPEC_BEGIN(FLDispatcherSpec)
             context(@"when added an observer", ^{
 
                 __block SomeObserver *observer;
-                __block id object;
+                __block SomeObject *object;
                 __block SEL sel;
                 beforeEach(^{
                     observer = [[SomeObserver alloc] init];
