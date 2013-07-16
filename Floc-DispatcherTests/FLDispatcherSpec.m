@@ -7,7 +7,6 @@
 #import "Kiwi.h"
 #import "FLDispatcher.h"
 #import "SomeObject.h"
-#import "FlagObject.h"
 #import "SomeObserver.h"
 #import "HasObserverObserver.h"
 
@@ -45,12 +44,11 @@ SPEC_BEGIN(FLDispatcherSpec)
 
             it(@"instantiates an dispatcher", ^{
                 [[dispatcher should] beKindOfClass:[FLDispatcher class]];
+                [[[FLDispatcher sharedDispatcher] should] beKindOfClass:[FLDispatcher class]];
             });
 
             it(@"returns same dispatcher", ^{
-                id o1 = [FLDispatcher sharedDispatcher];
-                id o2 = [FLDispatcher sharedDispatcher];
-                [[o1 should] equal:o2];
+                [[[FLDispatcher sharedDispatcher] should] equal:[FLDispatcher sharedDispatcher]];
             });
 
             it(@"has no observers", ^{
@@ -78,12 +76,6 @@ SPEC_BEGIN(FLDispatcherSpec)
                     object = [[SomeObject alloc] init];
                     sel = @selector(test:);
                     [dispatcher addObserver:observer forObject:[object class] withSelector:sel priority:0];
-
-                    // Add some unused observers
-                    [dispatcher addObserver:[[SomeObserver alloc] init] forObject:[object class] withSelector:sel priority:0];
-                    [dispatcher addObserver:[[SomeObserver alloc] init] forObject:[object class] withSelector:sel priority:0];
-                    [dispatcher addObserver:[[SomeObserver alloc] init] forObject:[object class] withSelector:sel priority:0];
-                    [dispatcher addObserver:[[SomeObserver alloc] init] forObject:[object class] withSelector:sel priority:0];
                 });
 
                 it(@"has observer", ^{
@@ -108,7 +100,7 @@ SPEC_BEGIN(FLDispatcherSpec)
                 });
 
                 it(@"has no observer for wrong object", ^{
-                    BOOL has = [dispatcher hasObserver:observer forObject:[FlagObject class]];
+                    BOOL has = [dispatcher hasObserver:observer forObject:[NSObject class]];
                     [[theValue(has) should] beNo];
                 });
 
