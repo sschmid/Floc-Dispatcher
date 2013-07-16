@@ -38,7 +38,7 @@ SPEC_BEGIN(FLDispatcherSpec)
         describe(@"FLDispatcher", ^{
 
             it(@"has macros", ^{
-                id o = [[NSObject alloc] init];
+                NSObject *o = [[NSObject alloc] init];
                 SEL sel = @selector(init);
                 fl_dispatcher_dispatch(o);
                 fl_dispatcher_add(self, o, sel);
