@@ -15,7 +15,7 @@
 
 @interface FLDispatcher : NSObject
 
-+ (FLDispatcher *)sharedDispatcher;
++ (instancetype)sharedDispatcher;
 
 - (void)dispatchObject:(id)object;
 

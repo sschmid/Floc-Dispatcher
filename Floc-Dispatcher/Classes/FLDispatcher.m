@@ -7,19 +7,20 @@
 #import "FLDispatcher.h"
 #import "FLObserverEntry.h"
 
-static FLDispatcher *sDispatcher;
-
 @interface FLDispatcher ()
 @property(nonatomic, strong) NSMutableDictionary *observerEntries;
 @end
 
 @implementation FLDispatcher
 
-+ (FLDispatcher *)sharedDispatcher {
-    if (!sDispatcher)
-        sDispatcher = [[self alloc] init];
++ (instancetype)sharedDispatcher {
+    static FLDispatcher *sInstance = nil;
+    static dispatch_once_t onceToken = 0;
+    dispatch_once(&onceToken, ^{
+        sInstance = [[self alloc] init];
+    });
 
-    return sDispatcher;
+    return sInstance;
 }
 
 - (id)init {
