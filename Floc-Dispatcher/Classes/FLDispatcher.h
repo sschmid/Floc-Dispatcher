@@ -6,12 +6,13 @@
 
 #import <Foundation/Foundation.h>
 
-#define fl_dispatcher_dispatch(__object__) [[FLDispatcher sharedDispatcher] dispatchObject:__object__]
-#define fl_dispatcher_add(__observer__, __object__, __sel__) [[FLDispatcher sharedDispatcher] addObserver:__observer__ forObject:__object__ withSelector:__sel__];
-#define fl_dispatcher_addWithPrio(__observer__, __object__, __sel__, __prio__) [[FLDispatcher sharedDispatcher] addObserver:__observer__ forObject:__object__ withSelector:__sel__  priority:__prio__];
-#define fl_dispatcher_addOnce(__observer__, __object__, __sel__) [[FLDispatcher sharedDispatcher] addObserverOnce:__observer__ forObject:__object__ withSelector:__sel__];
-#define fl_dispatcher_addOnceWithPrio(__observer__, __object__, __sel__, __prio__) [[FLDispatcher sharedDispatcher] addObserverOnce:__observer__ forObject:__object__ withSelector:__sel__  priority:__prio__];
-#define fl_dispatcher_remove(__observer__) [[FLDispatcher sharedDispatcher] removeObserver:__observer__];
+#define fl_dispatcher [FLDispatcher sharedDispatcher]
+#define fl_dispatcher_dispatch(object) [fl_dispatcher dispatchObject:object]
+#define fl_dispatcher_add(observer, object, sel) [fl_dispatcher addObserver:observer forObject:object withSelector:sel];
+#define fl_dispatcher_addWithPrio(observer, object, sel, prio) [fl_dispatcher addObserver:observer forObject:object withSelector:sel priority:prio];
+#define fl_dispatcher_addOnce(observer, object, sel) [fl_dispatcher addObserverOnce:observer forObject:object withSelector:sel];
+#define fl_dispatcher_addOnceWithPrio(observer, object, sel, prio) [fl_dispatcher addObserverOnce:observer forObject:object withSelector:sel priority:prio];
+#define fl_dispatcher_remove(observer) [fl_dispatcher removeObserver:observer];
 
 @interface FLDispatcher : NSObject
 

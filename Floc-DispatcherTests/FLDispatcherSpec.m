@@ -41,10 +41,10 @@ SPEC_BEGIN(FLDispatcherSpec)
                 NSObject *o = [[NSObject alloc] init];
                 SEL sel = @selector(init);
                 fl_dispatcher_dispatch(o);
-                fl_dispatcher_add(self, o, sel);
-                fl_dispatcher_addWithPrio(self, o, sel, 10);
-                fl_dispatcher_addOnce(self, o, sel);
-                fl_dispatcher_addOnceWithPrio(self, o, sel, 10);
+                fl_dispatcher_add(self, [o class], sel);
+                fl_dispatcher_addWithPrio(self, [o class], sel, 10);
+                fl_dispatcher_addOnce(self, [o class], sel);
+                fl_dispatcher_addOnceWithPrio(self, [o class], sel, 10);
                 fl_dispatcher_remove(self);
             });
 
